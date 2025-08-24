@@ -98,12 +98,4 @@ def main():
 
 
 if __name__ == "__main__":
-    if len(sys.argv) > 1 and sys.argv[1] == "set_endpoints":
-        with GlobusComputeCloudManager(auto_authenticate=True) as cloud_manager:
-            cloud_manager.configure_endpoints_interactive_and_save()
-    elif len(sys.argv) > 1 and sys.argv[1] == "login":
-        GlobusComputeCloudManager.login_interactive()
-    elif len(sys.argv) > 1 and sys.argv[1] == "logout":
-        GlobusComputeCloudManager.logout()
-    else:
-        main()
+    main()
