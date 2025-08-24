@@ -1,5 +1,4 @@
 import time
-import sys
 from mwfaas.master import Master
 from mwfaas.globus_compute_manager import GlobusComputeCloudManager
 from mwfaas.list_distribuition_strategy import ListDistributionStrategy
