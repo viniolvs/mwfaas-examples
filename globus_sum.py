@@ -2,6 +2,7 @@ import time
 import sys
 from mwfaas.master import Master
 from mwfaas.globus_compute_manager import GlobusComputeCloudManager
+from mwfaas.list_distribuition_strategy import ListDistributionStrategy
 
 
 def somar_bloco_lista(bloco_de_numeros):
@@ -37,7 +38,10 @@ def main():
     )
 
     with GlobusComputeCloudManager(auto_authenticate=True) as cloud_manager:
-        master = Master(cloud_manager=cloud_manager)
+        distribuition = ListDistributionStrategy()
+        master = Master(
+            cloud_manager=cloud_manager, distribution_strategy=distribuition
+        )
 
         print(f"\nMaster inicializado: {master}")
         print(f"  Cloud Manager em uso: {cloud_manager.__class__.__name__}")
@@ -45,7 +49,7 @@ def main():
             f"  Estratégia de Distribuição: {master.distribution_strategy.__class__.__name__}"
         )
         print(
-            f"  Paralelismo Alvo (do CloudManager): {cloud_manager.get_target_parallelism()}"
+            f"  Paralelismo Alvo (do CloudManager): {cloud_manager.get_worker_count()}"
         )
 
         print(
