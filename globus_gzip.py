@@ -41,18 +41,15 @@ def main():
         try:
             results = master.run(data_input=input_bytes, user_function=compress_files)
             if results:
-                output_dir = "compressed_files_bytes"
-                if not os.path.exists(output_dir):
-                    os.makedirs(output_dir)
-
                 original_file_idx = 0
                 for result in results:
                     if original_file_idx < len(original_files):
                         original_filename = os.path.basename(
                             original_files[original_file_idx]
                         )
+                        # current dir
                         output_path = os.path.join(
-                            output_dir, f"{original_filename}.gz"
+                            os.getcwd(), f"{original_filename}.gz"
                         )
                         if isinstance(result, Exception):
                             print(
@@ -79,6 +76,7 @@ def main():
             for status in task_statuses:
                 status_info = (
                     f"  ID da Tarefa: {status.get('id', 'N/A'):<38} "
+                    f"Worker ID: {status.get('worker_id', 'N/A')}"
                     f"Índice do Bloco: {status.get('chunk_index', 'N/A'):<3} "
                     f"Status: {status.get('status', 'N/A'):<20}"
                 )
