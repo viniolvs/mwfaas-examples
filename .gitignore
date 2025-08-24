@@ -175,4 +175,5 @@ cython_debug/
 
 globus_config.json
 
+*.gz
 test_files
