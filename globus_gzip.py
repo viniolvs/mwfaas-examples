@@ -6,7 +6,7 @@ from mwfaas.globus_compute_manager import GlobusComputeCloudManager
 from mwfaas.list_distribuition_strategy import ListDistributionStrategy
 
 
-def compress_files(files_bytes: List[bytes]) -> bytes:
+def compress_files(files_bytes: List[bytes], metadata: dict) -> bytes:
     import gzip
 
     if not files_bytes or len(files_bytes) == 0:
